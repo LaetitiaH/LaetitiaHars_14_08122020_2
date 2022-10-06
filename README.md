@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+[![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/uses-css.svg)](https://forthebadge.com)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React-modal
 
-## Available Scripts
+A library to easily display and customize a modal.
 
-In the project directory, you can run:
+## Technologies
+- JS
+- Sass
+- React
 
-### `npm start`
+## Authors
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+React-modal is developed by Laetitia Hars
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Version
 
-### `npm test`
+Version 0.1.0
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `npm run build`
+To install, you can use [npm](https://www.npmjs.com/)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+$ npm install --save react-modal
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Documentation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### General Usage
 
-### `npm run eject`
+The only prop required is ```isShowing```, which is used to indicate whether the pop-up should be opened.
+The following example describes how to open and close a modal, as well as all the possible options.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+import Modal from 'react-modal';
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    <Modal
+      isShowing={false}, /* Open modal if true */
+      
+      onRequestClose={afterCloseFunction}, /* Function to be executed when the modal is closed */
+      
+      title={null}, /* Text content for the modal title */ (null means no title)
+      
+      clickClose={true}, /* Allows the user to close the modal by clicking the overlay */
+      
+      escapeClose={true}, /* Allows the user to close the modal by pressing `ESC` */
+      
+      showClose={true}, /* Shows a (X) icon button in the top-right corner */
+      
+      closeText={"Close"}, /* Text content for the close <button> */
+      
+      closeClass={""}, /* Add additional class(es) to the close <button> tag */
+      
+      modalClass={""}, /* CSS class added to the element being displayed in the modal */
+      
+      overlayClass={""}, /* CSS class added to the overlay */
+      
+      fadeDuration={250}, /* Number of milliseconds the fade transition takes (0 means no transition) */
+      >
+        <div>Modal content</div>
+      </Modal>
+```
