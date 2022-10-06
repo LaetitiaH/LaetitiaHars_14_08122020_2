@@ -2,6 +2,10 @@
   "name": "react-modal",
   "version": "0.1.0",
   "private": true,
+  "description": "library to easily display and customize a modal",
+  "author": "Laetitia Hars <laetitia.hars@gmail.com>",
+  "keywords": [
+    "modal", "react-modal", "dialog" ],
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
