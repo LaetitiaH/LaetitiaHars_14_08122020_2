@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import Modal from "./lib/Modal";
 import ReactDOM from "react-dom/client";
+import Modal from "./lib/Modal";
 
-export const useModal = () => {
+export const useModal = (): {
+  isShowing: boolean;
+  toggleShowing: () => void;
+} => {
   const [isShowing, setIsShowing] = useState(false);
 
-  const toggleShowing = () => {
+  const toggleShowing = (): void => {
     setIsShowing(!isShowing);
   };
 
@@ -15,7 +18,7 @@ export const useModal = () => {
   };
 };
 
-const App = () => {
+const App: React.FC = (): JSX.Element => {
   const { isShowing, toggleShowing } = useModal();
 
   return (
@@ -37,6 +40,8 @@ const App = () => {
   );
 };
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
 
 root.render(<App />);

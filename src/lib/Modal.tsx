@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { ReactPortal, useEffect } from "react";
 import ReactDOM from "react-dom";
 import "./Modal.scss";
-import PropTypes from "prop-types";
+import { ModalProps } from "./modal.types";
 import { ESCAPE_CODE } from "./variables";
 
 /**
@@ -26,28 +26,31 @@ import { ESCAPE_CODE } from "./variables";
  * @version 1.0
  */
 
-const Modal = ({
+const Modal: React.FC<ModalProps> = ({
   isShowing,
   onRequestClose,
-  title,
-  clickClose,
-  escapeClose,
-  showClose,
-  closeText,
-  closeClass,
-  modalClass,
-  overlayClass,
-  fadeDuration,
+  title = null,
+  clickClose = true,
+  escapeClose = true,
+  showClose = true,
+  closeText = "close",
+  closeClass = "",
+  modalClass = "",
+  overlayClass = "",
+  fadeDuration = 250,
   ...modalContent
-}) => {
-  const onCLickOutside = (event) => {
+}): ReactPortal | null => {
+  const onCLickOutside = (event: React.MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
-    const elementClicked = event.target.className;
+    if (!clickClose) {
+      return;
+    }
+    const elementClicked = (event.target as HTMLElement).className;
     if (
       elementClicked.includes("overlay") ||
       elementClicked.includes("modal-wrapper")
     ) {
-      return onRequestClose();
+      return onRequestClose ? onRequestClose() : false;
     }
   };
 
@@ -57,9 +60,9 @@ const Modal = ({
 
   useEffect(() => {
     // Trigger if clicked on outside of element
-    const handleEsc = (event) => {
+    const handleEsc = (event: any) => {
       if (event.keyCode === ESCAPE_CODE && !escapeClose) {
-        return onRequestClose();
+        return onRequestClose ? onRequestClose() : false;
       }
     };
     // Bind the event listener
@@ -76,7 +79,7 @@ const Modal = ({
         <>
           <div
             className={`modal-overlay ${overlayClass}`}
-            onClick={clickClose && onCLickOutside}
+            onClick={onCLickOutside}
             style={animationOverlayStyle}
           >
             <div className="modal-wrapper">
@@ -107,31 +110,3 @@ const Modal = ({
 };
 
 export default Modal;
-
-Modal.propTypes = {
-  isShowing: PropTypes.bool.isRequired,
-  onRequestClose: PropTypes.func,
-  clickClose: PropTypes.bool,
-  escapeClose: PropTypes.bool,
-  showClose: PropTypes.bool,
-  closeText: PropTypes.string,
-  title: PropTypes.string,
-  closeClass: PropTypes.string,
-  modalClass: PropTypes.string,
-  overlayClass: PropTypes.string,
-  fadeDuration: PropTypes.number,
-  modalContent: PropTypes.shape({ children: PropTypes.string }),
-};
-
-Modal.defaultProps = {
-  isShowing: false,
-  clickClose: true,
-  escapeClose: true,
-  showClose: true,
-  closeText: "Close",
-  title: null,
-  closeClass: "",
-  modalClass: "",
-  overlayClass: "",
-  fadeDuration: 250,
-};
