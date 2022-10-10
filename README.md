@@ -1,6 +1,6 @@
 [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/uses-css.svg)](https://forthebadge.com)
 
-# React-modal
+# React-modal-typescript-custom
 
 A library to easily display and customize a modal.
 
@@ -11,7 +11,7 @@ A library to easily display and customize a modal.
 
 ## Authors
 
-React-modal is developed by Laetitia Hars
+React-modal-typescript-custom is developed by Laetitia Hars
 
 ## Version
 
@@ -22,7 +22,7 @@ Version 0.1.0
 To install, you can use [npm](https://www.npmjs.com/)
 
 ```
-$ npm install --save react-modal
+$ npm install --save react-modal-typescript-custom
 ```
 
 ## Documentation
@@ -33,7 +33,8 @@ The only prop required is ```isShowing```, which is used to indicate whether the
 The following example describes how to open and close a modal, as well as all the possible options.
 
 ```
-import Modal from 'react-modal';
+import Modal from 'react-modal-typescript-custom';
+import "react-modal-typescript-custom/dist/index.css";
 
     <Modal
       isShowing={false}, /* Open modal if true */
